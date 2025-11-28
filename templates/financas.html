@@ -19,7 +19,7 @@
   </aside>
 
   <main>
-    <h1 class="titulo-pagina">Finanças</h1>
+    <h1 class="titulo-pagina">Finanças</h1> 
 
     <section class="painel-info">
       <h3>Registrar nova transação</h3>
@@ -64,8 +64,8 @@
         </div>
       </div>
 
-      <div style="margin-top:20px;max-width:900px;">
-        <canvas id="chartCategorias" width="800" height="320"></canvas>
+      <div style="margin-top:20px; max-width:230px; text-align:center">
+        <canvas id="chartCategorias" width="230" height="460"> </canvas>
       </div>
     </section>
 
@@ -83,6 +83,11 @@
               <td>{{ r['categoria'] }}</td>
               <td>{{ r['tipo'] }}</td>
               <td>R$ {{ "%.2f"|format(r['valor']) }}</td>
+              <td>
+                  <form action="/apagar/{{ r['id'] }}" method="POST" style="margin:0;">
+                  <button type="submit" style="background-color:#132d42;color:white;border:none;padding:4px 8px;border-radius:6px;cursor:pointer;">excluir</button>
+                  </form>
+                </td>
             </tr>
           {% else %}
             <tr><td colspan="5">Nenhum registro ainda.</td></tr>
@@ -108,7 +113,7 @@
           labels: data.por_categoria.labels,
           datasets: [{ data: data.por_categoria.values, backgroundColor: data.por_categoria.colors }]
         },
-        options: { responsive:false, plugins:{ legend:{ position:'bottom' } } }
+        options: { responsive:true, plugins:{ legend:{ position:'bottom' } } }
       });
     }
     document.addEventListener('DOMContentLoaded', atualizarResumo);
